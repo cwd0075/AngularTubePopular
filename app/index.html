@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myTube">
+<head>
+	<meta charset="UTF-8">
+	<title>Youtube Hits</title>
+  <link rel="stylesheet" type="text/css" href="app.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/angularjs-datepicker/src/css/angular-datepicker.css">
+</head>
+<body>
+
+  <header class="nt-header">
+    <section>
+      <form ng-submit="search()" ng-controller="SearchFormCtrl">
+        <div class="alert alert-danger" ng-show="page_load_error"> {{ page_load_error }} </div>
+        <div class="col-md-4">
+          <datepicker date-format="yyyy-MM-dd">
+            <input id="inputDateAfter" ng-model="dateafter" type="text" placeholder="Video after ..."/>
+          </datepicker>
+        </div>
+        <div class="col-md-4">
+          <datepicker date-format="yyyy-MM-dd">
+            <input id="inputDateBefore" ng-model="datebefore" type="text" placeholder="Video before ..."/>
+          </datepicker>
+        </div>
+        <button class="btn btn-default col-md-2" id="updateButton">
+          <span class="fa fa-search"></span> Submit Date
+        </button>
+      </form>
+    </section>
+  </header>
+
+ 	<div class="container">
+    <div class="row">
+      <ng-view></ng-view>
+    </div>
+  </div>
+	<script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+	<script src="app.js"></script>
+	<script src="videolist/videolist.js"></script>
+  <script src="citylist/citylist.js"></script>
+  <script src="watchvid/watchvid.js"></script>
+  <script src="components/services.js"></script>
+</body>
+</html>
+

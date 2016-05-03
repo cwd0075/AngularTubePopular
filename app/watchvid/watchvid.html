@@ -1,0 +1,37 @@
+<div class="well col-xs-12">    
+    
+        
+        <div class="yt-player-container">
+            <div ng-if="active">
+                <iframe width="640" height="385" ng-src= "{{ trustSrc(videoWatch.embedUrl) }}" class="yt-video-player"></iframe>
+            </div>
+            <div ng-click="active=true" ng-hide="active" class="yt-video-poster">
+                <img ng-src= "{{ videoWatch.image.url }}"/>
+                <span class="yt-video-play-button fa fa-play"></span>
+            </div>
+        </div>
+        <div class="row nt-grid">
+            <div class="col-md-8 col">
+                
+                    <h5 class="nt-heading">
+                        Video Info
+                    </h5>
+                
+
+                <div class="row nt-padded">
+                    <img ng-src="{{ videoWatch.image.url }}" class="col-md-4"/>
+
+                    <div class="nt-video-panel-inner col-md-8">
+                        
+                        <h4>{{ videoWatch.title }}</h4>
+                        
+                        <p>Views: {{ videoWatch.viewCount }}</p>
+
+                        <p ng-if="videoWatch.description">{{ videoWatch.description }}</p>
+                        <p ng-if="!videoWatch.description">No description available</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+</div>

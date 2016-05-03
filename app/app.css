@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	margin-top: 50px;
+}
+
+.nt-heading {
+  font-family: 'Open Sans';
+  
+}
+
+.movie-container {
+	height: 250px;
+	overflow: hidden;
+   	padding: 0 !important;
+}
+
+.movie-container img {
+  
+  position:absolute;
+  width:140%;
+  left:-20%;
+  top:-20%;
+}
+
+.movie-thumb {
+	text-align: center;
+	color: black;
+}
+
+.movie-thumb h5 {
+	font-weight: bold;
+	margin-top: 0px;
+	
+}
+
+.movie-thumb:hover {
+	text-decoration: none;
+	color: grey;
+}
+
