@@ -15,7 +15,7 @@ angular.module("myTube.videolist",[])
 
 
 // Todo:
-// Add view count in watchvid template
+// Update getVideo to use already downloaded info 
 // Update the display to match original ng-Tube
 
 

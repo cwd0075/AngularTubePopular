@@ -2,20 +2,15 @@
 angular.module("myTube.modelservices",[])
 	.value('searchDate', {after:"2016-01-01", before:"2016-12-31"})
 	.constant('YT_EMBED_URL',   'http://www.youtube.com/embed/{ID}?autoplay=1')
-	.constant('YT_VIDEO_URL',   'https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&key=AIzaSyCl3iyhmnx5ZUPKoVoDSJWNyJEdZi1jNR4&type=video&maxResults=48&q=')
-	.constant('YT_ONE_VIDEO_URL', 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCl3iyhmnx5ZUPKoVoDSJWNyJEdZi1jNR4&type=video')
+	.constant('YT_VIDEO_URL',   'http://52.26.121.248:3000/api/videos')
+	
 	.constant('YT_VIDEO_COUNT_URL', 'https://www.googleapis.com/youtube/v3/videos?part=statistics%2C+snippet&key=AIzaSyCl3iyhmnx5ZUPKoVoDSJWNyJEdZi1jNR4')
-	.constant('YT_VIDEO_CITY_URL', 'https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&key=AIzaSyCl3iyhmnx5ZUPKoVoDSJWNyJEdZi1jNR4&type=video&maxResults=48&q=&locationRadius=25km')
+	.constant('YT_AREA_LIST', 'http://52.26.121.248:3000/api/arealist')
 	.factory('getVideos', ['$http', '$q', '$log', 'ytVideoPrepare', 'YT_VIDEO_URL', function($http, $q, $log, ytVideoPrepare, YT_VIDEO_URL){
 		return function(){
 			var defer = $q.defer();
 
-			$http.get(YT_VIDEO_URL,{
-		        params: {
-		          
-		          fields: 'items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/high'
-		        	}
-		      	})
+			$http.get(YT_VIDEO_URL)
 				.success(function(response){
 
 					var results = [];
@@ -51,23 +46,14 @@ angular.module("myTube.modelservices",[])
 			return defer.promise;
 		};
 	}])
-	.factory('getVideosByCity', ['$http', '$q', '$log', 'ytVideoPrepare', 'YT_VIDEO_CITY_URL', 'searchDate', function($http, $q, $log, ytVideoPrepare, YT_VIDEO_CITY_URL, searchDate){
+	.factory('getVideosByCity', ['$http', '$q', '$log', 'ytVideoPrepare', 'YT_VIDEO_URL', 'searchDate', function($http, $q, $log, ytVideoPrepare, YT_VIDEO_URL, searchDate){
 		return function(cityXY){
 			var defer = $q.defer();
+				
 			
-			var pAfter, pBefore;
-			
-			pAfter = (searchDate.after+'T00:00:00Z');
-			pBefore = (searchDate.before+'T00:00:00Z');
-			$log.info(pAfter);
-			$log.info(pBefore);
-			
-			$http.get(YT_VIDEO_CITY_URL,{
+			$http.get(YT_VIDEO_URL,{
 		        params: {
-		          publishedAfter: pAfter,
-		          publishedBefore: pBefore, 
-		          location: cityXY,
-		          fields: 'items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/high'
+		          area: cityXY
 		        	}
 		      	})
 				.success(function(response){
@@ -82,11 +68,11 @@ angular.module("myTube.modelservices",[])
 			return defer.promise;
 		};
 	}])
-	.factory('getCities', ['$http', '$q', '$log', function($http, $q, $log){
+	.factory('getCities', ['$http', '$q', '$log', 'YT_AREA_LIST', function($http, $q, $log, YT_AREA_LIST){
 		return function(){
 			var defer = $q.defer();
 
-			$http.get("json/cities.json")
+			$http.get(YT_AREA_LIST)
 				.success(function(response){
 				  $log.info(response);
 		          defer.resolve(response);

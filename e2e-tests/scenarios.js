@@ -50,7 +50,7 @@ describe('Integration tests: videolist', function() {
 
 describe('Integration tests: citylist', function() {
   beforeEach(function(){
-      browser.get('http://52.26.121.248:8000/app/#/city/22.25,+114.166667');
+      browser.get('http://52.26.121.248:8000/app/#/city/HK');
       browser.waitForAngular();
   });
   it('should render the video details when you click a video in the videolist', function(){
@@ -67,6 +67,7 @@ describe('Integration tests: citylist', function() {
 describe('Integration tests: watchvid', function() {
   beforeEach(function(){
       browser.get('http://52.26.121.248:8000/app/#/watch/9bZkp7q19f0');
+      browser.waitForAngular();
   });
   it('should play the video when you click on the video inside video details page', function(){
     
@@ -78,19 +79,3 @@ describe('Integration tests: watchvid', function() {
 
 });  
 
-describe('Integration test: SearchFormCtrl', function(){
-  beforeEach(function(){
-      browser.get('http://52.26.121.248:8000/app');
-      browser.waitForAngular();
-  });
-  it('should display error message when you input incorrect date sequence', function(){
-    var dateafter = element(by.id('inputDateAfter'));
-    var datebefore = element(by.id('inputDateBefore'));
-    var goButton = element(by.id('updateButton'));
-    dateafter.sendKeys('2016-02-01');
-    datebefore.sendKeys('2016-01-01');
-    goButton.click();
-    var ele = element(by.className("alert-danger"));
-    expect(ele.isDisplayed()).toBe(true);
-  });
-});
