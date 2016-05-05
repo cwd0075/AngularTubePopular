@@ -4,7 +4,7 @@ angular.module("myTube.modelservices",[])
 	.constant('YT_EMBED_URL',   'http://www.youtube.com/embed/{ID}?autoplay=1')
 	.constant('YT_VIDEO_URL',   'http://52.26.121.248:3000/api/videos')
 	
-	.constant('YT_VIDEO_COUNT_URL', 'https://www.googleapis.com/youtube/v3/videos?part=statistics%2C+snippet&key=AIzaSyCl3iyhmnx5ZUPKoVoDSJWNyJEdZi1jNR4')
+	.constant('YT_VIDEO_COUNT_URL', 'http://52.26.121.248:3000/api/video')
 	.constant('YT_AREA_LIST', 'http://52.26.121.248:3000/api/arealist')
 	.factory('getVideos', ['$http', '$q', '$log', 'ytVideoPrepare', 'YT_VIDEO_URL', function($http, $q, $log, ytVideoPrepare, YT_VIDEO_URL){
 		return function(){
@@ -31,7 +31,7 @@ angular.module("myTube.modelservices",[])
 			$http.get(YT_VIDEO_COUNT_URL,{
 		        params: {
 		          id: vidID,
-		          fields: 'items/statistics,items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/high'
+		          //fields: 'items/statistics,items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/high'
 		          }
 		      	})
 				.success(function(response){

@@ -15,7 +15,7 @@ angular.module("myTube.videolist",[])
 
 
 // Todo:
-// Update getVideo to use already downloaded info 
+
 // Update the display to match original ng-Tube
 
 

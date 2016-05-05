@@ -1,5 +1,5 @@
 'use strict';
-
+var id = '';
 describe('Integration tests: videolist', function() {
   // var firstNumber = element(by.model('first'));
   // var secondNumber = element(by.model('second'));
@@ -57,16 +57,22 @@ describe('Integration tests: citylist', function() {
     var link = element(by.css('.movie-container:nth-child(1)'));
     link.click();
     expect(browser.getCurrentUrl()).toMatch('\/watch');
-    var ele = element(by.binding('videoWatch.title'));
-    expect(ele.getText()).not.toEqual("");
     
+    element(by.tagName('h4')).evaluate('videoWatch.title').
+      then(function(value){
+        expect(value).not.toEqual("");
+        //console.log(value);
+      });
+    element(by.tagName('h4')).evaluate('videoWatch.id').
+      then(function(value){
+        id = value;
+      });
   });
-
 });  
 
 describe('Integration tests: watchvid', function() {
   beforeEach(function(){
-      browser.get('http://52.26.121.248:8000/app/#/watch/9bZkp7q19f0');
+      browser.get('http://52.26.121.248:8000/app/#/watch/'+ id);
       browser.waitForAngular();
   });
   it('should play the video when you click on the video inside video details page', function(){
