@@ -2,10 +2,10 @@
 angular.module("myTube.modelservices",[])
 	.value('searchDate', {after:"2016-01-01", before:"2016-12-31"})
 	.constant('YT_EMBED_URL',   'http://www.youtube.com/embed/{ID}?autoplay=1')
-	.constant('YT_VIDEO_URL',   'http://52.26.121.248:3000/api/videos')
+	.constant('YT_VIDEO_URL',   'http://www.bbhot.com:8080/api/videos')
 	
-	.constant('YT_VIDEO_COUNT_URL', 'http://52.26.121.248:3000/api/video')
-	.constant('YT_AREA_LIST', 'http://52.26.121.248:3000/api/arealist')
+	.constant('YT_VIDEO_COUNT_URL', 'http://www.bbhot.com:8080/api/video')
+	.constant('YT_AREA_LIST', 'http://www.bbhot.com:8080/api/arealist')
 	.factory('getVideos', ['$http', '$q', '$log', 'ytVideoPrepare', 'YT_VIDEO_URL', function($http, $q, $log, ytVideoPrepare, YT_VIDEO_URL){
 		return function(){
 			var defer = $q.defer();

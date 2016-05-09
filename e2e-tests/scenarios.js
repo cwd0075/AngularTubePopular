@@ -23,7 +23,7 @@ describe('Integration tests: videolist', function() {
   //   expect(latestResult.getText()).toEqual('3');
   // });
   beforeEach(function(){
-      browser.get('http://52.26.121.248:8000/app');
+      browser.get('http://52.26.121.248:3000/app');
       browser.waitForAngular();
   });
 
@@ -50,7 +50,7 @@ describe('Integration tests: videolist', function() {
 
 describe('Integration tests: citylist', function() {
   beforeEach(function(){
-      browser.get('http://52.26.121.248:8000/app/#/city/HK');
+      browser.get('http://52.26.121.248:3000/app/#/city/HK');
       browser.waitForAngular();
   });
   it('should render the video details when you click a video in the videolist', function(){
@@ -72,7 +72,7 @@ describe('Integration tests: citylist', function() {
 
 describe('Integration tests: watchvid', function() {
   beforeEach(function(){
-      browser.get('http://52.26.121.248:8000/app/#/watch/'+ id);
+      browser.get('http://52.26.121.248:3000/app/#/watch/'+ id);
       browser.waitForAngular();
   });
   it('should play the video when you click on the video inside video details page', function(){
